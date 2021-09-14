@@ -9,12 +9,13 @@ import PageLoader from "../../component/PageLoader/PageLoader";
 import {AppStateType} from "../../redux/reducers/root-reducer";
 import {useHistory} from "react-router-dom";
 import {OrderError, Perfume, User} from "../../types/types";
+import {ProductClass} from "../../types/ProductClass";
 
 const Order: FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const usersData: Partial<User> = useSelector((state: AppStateType) => state.user.user);
-    const perfumes: Array<Perfume> = useSelector((state: AppStateType) => state.cart.perfumes);
+    const perfumes: Array<ProductClass> = useSelector((state: AppStateType) => state.cart.perfumes);
     const totalPrice: number = useSelector((state: AppStateType) => state.cart.totalPrice);
     const errors: Partial<OrderError> = useSelector((state: AppStateType) => state.order.errors);
     const loading: boolean = useSelector((state: AppStateType) => state.order.loading);
@@ -175,8 +176,7 @@ const Order: FC = () => {
                                                 <img src={perfume.filename}
                                                      className="rounded mx-auto w-50"/>
                                                 <div className="card-body text-center">
-                                                    <h5>{perfume.perfumeTitle}</h5>
-                                                    <h6>{perfume.perfumer}</h6>
+                                                    <h5>{perfume.product_name}</h5>
                                                     <h6><span>Price: $ {perfume.price}</span>.00</h6>
                                                     <h6>
                                                         <span>Quantity: {perfumesFromLocalStorage.get(perfume.id)}</span>

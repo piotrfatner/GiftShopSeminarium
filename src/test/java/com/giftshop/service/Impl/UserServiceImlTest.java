@@ -74,7 +74,7 @@ public class UserServiceImlTest {
         verify(userRepository, times(1)).findAllByOrderByIdAsc();
     }
 
-    @Test
+    /*@Test
     public void getCart() {
         List<Long> perfumeIds = new ArrayList<>(Arrays.asList(2L, 4L));
         Perfume firstPerfume = new Perfume();
@@ -89,7 +89,7 @@ public class UserServiceImlTest {
         assertEquals(2, perfumeIds.size());
         assertNotNull(perfumeList);
         verify(perfumeRepository, times(1)).findByIdIn(perfumeIds);
-    }
+    }*/
 
     @Test
     public void loadUserByUsername() {

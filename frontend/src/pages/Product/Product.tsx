@@ -16,6 +16,8 @@ import halfStar from "../../img/star-half.svg";
 import Spinner from "../../component/Spinner/Spinner";
 import ProductReview from "./ProductReview";
 import ScrollButton from "../../component/ScrollButton/ScrollButton";
+import ProductService from "../../redux/services/ProductService";
+import {ProductClass} from "../../types/ProductClass";
 
 let stompClient: CompatClient | null = null;
 
@@ -27,6 +29,7 @@ const Product: FC<RouteComponentProps<{ id: string }>> = ({match}) => {
     const errors: Partial<ReviewError> = useSelector((state: AppStateType) => state.user.reviewErrors);
     const isReviewAdded: boolean = useSelector((state: AppStateType) => state.user.isReviewAdded);
     const loading: boolean = useSelector((state: AppStateType) => state.perfume.isPerfumeLoading);
+    const [product, setProduct] = useState(new ProductClass());
 
     const [author, setAuthor] = useState<string>("");
     const [message, setMessage] = useState<string>("");
@@ -35,6 +38,7 @@ const Product: FC<RouteComponentProps<{ id: string }>> = ({match}) => {
 
     useEffect(() => {
         // GraphQL example
+        ProductService.getProductById(parseInt(match.params.id)).then((a) => {setProduct(a)});
         dispatch(fetchPerfumeByQuery(match.params.id));
         // dispatch(fetchPerfume(match.params.id));
         dispatch(resetForm());
@@ -56,14 +60,15 @@ const Product: FC<RouteComponentProps<{ id: string }>> = ({match}) => {
     }, [isReviewAdded]);
 
     const addToCart = (): void => {
-        const perfumeId: number | undefined = perfume.id;
+        const productId: number | undefined = product.id;
+        debugger;
         let data: string | null = localStorage.getItem("perfumes");
         let cart: Map<number, any> = data ? new Map(JSON.parse(data as string)) : new Map();
 
-        if (cart.has(perfumeId as number)) {
-            cart.set(perfumeId as number, cart.get(perfumeId as number) + 1);
+        if (cart.has(productId as number)) {
+            cart.set(productId as number, cart.get(productId as number) + 1);
         } else {
-            cart.set(perfumeId as number, 1);
+            cart.set(productId as number, 1);
         }
         localStorage.setItem("perfumes", JSON.stringify(Array.from(cart.entries())));
         history.push("/cart");
@@ -95,16 +100,17 @@ const Product: FC<RouteComponentProps<{ id: string }>> = ({match}) => {
                 <div className="row">
                     <div className="col-md-5">
                         <div>
-                            <img src={perfume.filename} className="rounded mx-auto w-100"/>
+                            <img src={product.filename} className="rounded mx-auto w-100"/>
                         </div>
                     </div>
                     <div className="col-md-7">
-                        <h2>{perfume.perfumeTitle}</h2>
-                        <h3>{perfume.perfumer}</h3>
-                        <p>Product code: <span>{perfume.id}</span></p>
+                        <h2>{product.product_name}</h2>
+                        <h2>{product.description}</h2>
+                        <h3>test123</h3>
+                        <p>Product code: <span>{product.id}</span></p>
                         <div className="row">
                             <div className="col-md-2">
-                                {renderStars(perfume.perfumeRating === 0 ? 5 : perfume.perfumeRating)}
+                                {renderStars(product.rating === 0 ? 5 : product.rating)}
                             </div>
                             <div className="col-md-10">
                                 <span style={{paddingBottom: "50px"}}>{perfume.reviews?.length} reviews</span>
@@ -112,7 +118,7 @@ const Product: FC<RouteComponentProps<{ id: string }>> = ({match}) => {
                         </div>
                         <p style={{color: "#54C0A1"}}>In Stock</p>
                         <div className="row ml-1">
-                            <h6 className="mr-5"><span>${perfume.price}</span>.00</h6>
+                            <h6 className="mr-5"><span>${product.price}</span>.00</h6>
                             <button type="submit"
                                     className="btn btn-success mx-3"
                                     onClick={addToCart}>
@@ -123,9 +129,11 @@ const Product: FC<RouteComponentProps<{ id: string }>> = ({match}) => {
                         <table className="table">
                             <tbody>
                             <tr>
-                                <td>Perfume title:</td>
-                                <td>{perfume.perfumeTitle}</td>
+                                <td>Product name:</td>
+                                <td>{product.product_name}</td>
                             </tr>
+                            </tbody>
+                            {/*
                             <tr>
                                 <td>Brand:</td>
                                 <td>{perfume.perfumer}</td>
@@ -163,7 +171,7 @@ const Product: FC<RouteComponentProps<{ id: string }>> = ({match}) => {
                                 <td>{perfume.fragranceBaseNotes}</td>
                             </tr>
                             </tbody>
-                        </table>
+                        */}</table>
                     </div>
                 </div>
                 <div className="mt-5">

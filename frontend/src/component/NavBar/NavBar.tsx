@@ -8,10 +8,11 @@ import {logout} from "../../redux/thunks/auth-thunks";
 import "./NavBar.css";
 import {AppStateType} from "../../redux/reducers/root-reducer";
 import {Perfume} from "../../types/types";
+import {ProductClass} from "../../types/ProductClass";
 
 const NavBar: FC = () => {
     const dispatch = useDispatch();
-    const perfumes: Array<Perfume> = useSelector((state: AppStateType) => state.cart.perfumes);
+    const perfumes: Array<ProductClass> = useSelector((state: AppStateType) => state.cart.perfumes);
     const isLoggedIn: boolean = useSelector((state: AppStateType) => state.user.isLoggedIn);
 
     const handleLogout = () => {
@@ -52,7 +53,7 @@ const NavBar: FC = () => {
     return (
         <div>
             <div id="header" className="container-fluid header-top d-none d-md-block pb-5 pt-5">
-                <img src="https://i.ibb.co/fqYvrL8/LOGO4.jpg" className="rounded mx-auto d-block"/>
+                <img src="https://i.ibb.co/4Ttq1nk/mainTlo1.jpg" className="rounded mx-auto d-block"/>
             </div>
             <div className="container-fluid bg-black">
                 <nav id="navbar-main" className={`container navbar navbar-expand-lg bg-black text-white `}
@@ -60,14 +61,14 @@ const NavBar: FC = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto ">
                             <li className="nav-item">
-                                <Link to={"/"}><span className="nav-link pl-5 pr-5">HOME</span></Link>
+                                <Link to={"/"}><span className="nav-link pl-5 pr-5">STRONA GŁÓWNA</span></Link>
                             </li>
                             <li className="nav-item">
                                 <Link to={{pathname: "/menu", state: {id: "all"}}}>
-                                    <span className="nav-link pl-5 pr-5">PERFUMES</span></Link>
+                                    <span className="nav-link pl-5 pr-5">PRODUKTY</span></Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={"/contacts"}><span className="nav-link pl-5 pr-5">CONTACTS</span></Link>
+                                <Link to={"/contacts"}><span className="nav-link pl-5 pr-5">KONTAKT</span></Link>
                             </li>
                         </ul>
                         <ul className="navbar-nav ml-auto">

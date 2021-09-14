@@ -1,6 +1,7 @@
 package com.giftshop.mapper;
 
 import com.giftshop.dto.RegistrationRequest;
+import com.giftshop.dto.perfume.ProductResponse;
 import com.giftshop.dto.user.UserRequest;
 import com.giftshop.service.UserService;
 import com.giftshop.domain.Review;
@@ -47,8 +48,12 @@ public class UserMapper {
         return convertToResponseDto(userService.findUserByEmail(email));
     }
 
-    public List<PerfumeResponse> getCart(List<Long> perfumesIds) {
+    /*public List<PerfumeResponse> getCart(List<Long> perfumesIds) {
         return perfumeMapper.convertListToResponseDto(userService.getCart(perfumesIds));
+    }*/
+
+    public List<ProductResponse> getCart(List<Long> productsIds) {
+        return perfumeMapper.convertListToProductResponseDto(userService.getCart(productsIds));
     }
 
     public List<UserResponse> findAllUsers() {

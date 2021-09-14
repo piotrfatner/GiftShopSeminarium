@@ -1,6 +1,7 @@
 package com.giftshop.service;
 
 import com.giftshop.domain.Perfume;
+import com.giftshop.domain.Product;
 import com.giftshop.domain.Review;
 import com.giftshop.domain.User;
 import graphql.schema.DataFetcher;
@@ -19,7 +20,7 @@ public interface UserService {
 
     List<User> findAllUsers();
 
-    List<Perfume> getCart(List<Long> perfumeIds);
+    List<Product> getCart(List<Long> perfumeIds);
 
     User updateProfile(String email, User user);
 

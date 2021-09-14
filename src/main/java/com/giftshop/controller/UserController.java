@@ -3,6 +3,7 @@ package com.giftshop.controller;
 import com.giftshop.dto.order.OrderRequest;
 import com.giftshop.dto.order.OrderResponse;
 import com.giftshop.dto.perfume.PerfumeResponse;
+import com.giftshop.dto.perfume.ProductResponse;
 import com.giftshop.dto.review.ReviewRequest;
 import com.giftshop.dto.user.UserRequest;
 import com.giftshop.mapper.OrderMapper;
@@ -54,9 +55,14 @@ public class UserController {
         }
     }
 
-    @PostMapping("/cart")
+    /*@PostMapping("/cart")
     public ResponseEntity<List<PerfumeResponse>> getCart(@RequestBody List<Long> perfumesIds) {
         return ResponseEntity.ok(userMapper.getCart(perfumesIds));
+    }*/
+
+    @PostMapping("/cart")
+    public ResponseEntity<List<ProductResponse>> getCart(@RequestBody List<Long> productsIds) {
+        return ResponseEntity.ok(userMapper.getCart(productsIds));
     }
 
     @GetMapping("/orders")

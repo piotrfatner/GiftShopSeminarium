@@ -76,11 +76,11 @@ const MenuCards: FC<PropsType> = ({data, loading, itemsPerPage, startFrom, searc
                 <>
                 <div>test123</div>
                     <div className="row">
-                        {slicedData.map((perfume: ProductClass) => {
+                        {slicedData.map((product: ProductClass) => {
                             return (
                                 <ProductCardItem
-                                    key={perfume.id}
-                                    perfume={perfume}
+                                    key={product.id}
+                                    perfume={product}
                                     colSize={3}
                                     link={"/product"}
                                     btnName={"SHOW MORE"}/>

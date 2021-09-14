@@ -1,3 +1,4 @@
+import {ProductClass} from "./ProductClass";
 export type Perfume = {
     id: number
     perfumeTitle: string
@@ -75,12 +76,32 @@ export type Order = {
     postIndex: number
     orderItems: Array<OrderItem>
 };
+export type Order2 = {
+    id: number
+    totalPrice: number
+    date: string
+    firstName: string
+    lastName: string
+    city: string
+    address: string
+    email: string
+    phoneNumber: string
+    postIndex: number
+    orderItems: Array<OrderItemProduct>
+};
 
 export type OrderItem = {
     id: number
     amount: number
     quantity: number
     perfume: Perfume
+};
+
+export type OrderItemProduct = {
+    id: number
+    amount: number
+    quantity: number
+    product: ProductClass
 };
 
 export type OrderError = {

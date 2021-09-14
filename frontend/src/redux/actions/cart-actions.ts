@@ -11,12 +11,13 @@ import {
     LoadingCartActionType,
     StopLoadingCartActionType
 } from "../action-types/cart-action-types";
+import {ProductClass} from "../../types/ProductClass";
 
 export const loadingCart = (): LoadingCartActionType => ({
     type: LOADING_CART
 });
 
-export const fetchCartSuccess = (perfumes: Array<Perfume>): FetchCartSuccessActionType => ({
+export const fetchCartSuccess = (perfumes: Array<ProductClass>): FetchCartSuccessActionType => ({
     type: FETCH_CART_SUCCESS,
     payload: perfumes
 });

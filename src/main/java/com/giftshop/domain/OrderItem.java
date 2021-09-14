@@ -15,5 +15,5 @@ public class OrderItem {
     private Long quantity;
 
     @OneToOne
-    private Perfume perfume;
+    private Product product;
 }

@@ -1,9 +1,11 @@
 package com.giftshop.service.Impl;
 
 import com.giftshop.domain.Perfume;
+import com.giftshop.domain.Product;
 import com.giftshop.domain.Review;
 import com.giftshop.domain.User;
 import com.giftshop.repository.PerfumeRepository;
+import com.giftshop.repository.ProductRepository;
 import com.giftshop.repository.ReviewRepository;
 import com.giftshop.repository.UserRepository;
 import com.giftshop.service.UserService;
@@ -19,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PerfumeRepository perfumeRepository;
+    private final ProductRepository productRepository;
     private final ReviewRepository reviewRepository;
 
     @Override
@@ -49,9 +52,14 @@ public class UserServiceImpl implements UserService {
         return dataFetchingEnvironment -> userRepository.findAllByOrderByIdAsc();
     }
 
-    @Override
+    /*@Override
     public List<Perfume> getCart(List<Long> perfumeIds) {
         return perfumeRepository.findByIdIn(perfumeIds);
+    }*/
+
+    @Override
+    public List<Product> getCart(List<Long> productIds) {
+        return productRepository.findByIdIn(productIds);
     }
 
     @Override

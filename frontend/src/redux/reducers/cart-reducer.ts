@@ -7,9 +7,10 @@ import {
     STOP_LOADING_CART,
     CartActionTypes
 } from "../action-types/cart-action-types";
+import {ProductClass} from "../../types/ProductClass";
 
 export type InitialStateType = {
-    perfumes: Array<Perfume>
+    perfumes: Array<ProductClass>
     loading: boolean
     totalPrice: number
 };

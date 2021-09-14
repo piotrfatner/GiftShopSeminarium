@@ -6,7 +6,7 @@ const sliderItems = [
     {
         id: "85",
         name: "Photo 1",
-        url: "https://i.ibb.co/dkpHPXQ/1million-ENG.jpg"
+        url: "https://i.ibb.co/rfwvxXL/jewelery-Pic-Black2.jpg"
     },
     {
         id: "46",
@@ -28,10 +28,13 @@ const CarouselImageSlider: FC = () => {
             <Carousel {...settings}>
                 {sliderItems.map((item, index) => {
                     return (
-                        <Carousel.Item key={item.id}>
+                        /*<Carousel.Item key={item.id}>
                             <Link to={`/product/${item.id}`}>
                                 <img className="d-block w-100" src={item.url} alt={item.name}/>
                             </Link>
+                        </Carousel.Item>*/
+                        <Carousel.Item key={item.id}>
+                            <img className="d-block w-100" style={{height: "450px"}} src={item.url} alt={item.name}/>
                         </Carousel.Item>
                     )
                 })}

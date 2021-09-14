@@ -2,9 +2,11 @@ package com.giftshop.service.Impl;
 
 import com.giftshop.domain.Order;
 import com.giftshop.domain.Perfume;
+import com.giftshop.domain.Product;
 import com.giftshop.repository.OrderItemRepository;
 import com.giftshop.repository.OrderRepository;
 import com.giftshop.repository.PerfumeRepository;
+import com.giftshop.repository.ProductRepository;
 import com.giftshop.service.OrderService;
 import com.giftshop.service.email.MailSender;
 import com.giftshop.domain.OrderItem;
@@ -25,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final PerfumeRepository perfumeRepository;
+    private final ProductRepository productRepository;
     private final MailSender mailSender;
 
     @Override
@@ -57,10 +60,11 @@ public class OrderServiceImpl implements OrderService {
         List<OrderItem> orderItemList = new ArrayList<>();
 
         for (Map.Entry<Long, Long> entry : perfumesId.entrySet()) {
-            Perfume perfume = perfumeRepository.findById(entry.getKey()).get();
+            //Perfume perfume = perfumeRepository.findById(entry.getKey()).get();
+            Product product = productRepository.findById(entry.getKey()).get();
             OrderItem orderItem = new OrderItem();
-            orderItem.setPerfume(perfume);
-            orderItem.setAmount((perfume.getPrice() * entry.getValue()));
+            orderItem.setProduct(product);
+            orderItem.setAmount((long)(product.getPrice() * entry.getValue()));
             orderItem.setQuantity(entry.getValue());
             orderItemList.add(orderItem);
             orderItemRepository.save(orderItem);
@@ -80,7 +84,7 @@ public class OrderServiceImpl implements OrderService {
         String template = "order-template";
         Map<String, Object> attributes = new HashMap<>();
         attributes.put("order", order);
-        mailSender.sendMessageHtml(order.getEmail(), subject, template, attributes);
+        //mailSender.sendMessageHtml(order.getEmail(), subject, template, attributes); google credentials needed
         return order;
     }
 

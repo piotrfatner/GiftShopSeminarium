@@ -43,7 +43,7 @@ const Menu: FC = () => {
     useEffect(() => {
         //getPerfumeById();
         //setProducts(ProductService.getProductById());
-        ProductService.getProductById().then((a) => {setProducts(a)});
+        //ProductService.getProductById().then((a) => {setProducts(a)});
         ProductService.getAllProducts().then((b) => {setProductsList(b)});
     }, []);
     useEffect(() => {

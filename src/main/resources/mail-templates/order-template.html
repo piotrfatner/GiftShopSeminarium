@@ -61,22 +61,18 @@
                     <tr>
                         <td style="width: 95px;" class="content">
                             <img style="width: 100%; height: auto"
-                                 th:src="@{{path} (path = ${orderItem.getPerfume().getFilename()})}"/>
+                                 th:src="@{{path} (path = ${orderItem.getProduct().getFilename()})}"/>
                         </td>
                         <td style="width: 179px;" class="content">
-                            <p><b th:text="${orderItem.getPerfume().getPerfumer()}"></b><br/>
+                            <p>
                                 <span style="font-size: 14px">
-                                    <span th:text="${orderItem.getPerfume().getPerfumeTitle()}"
+                                    <span th:text="${orderItem.getProduct().getProduct_name()}"
                                           th:remove="tag"></span><br/>
-                            <span th:text="${orderItem.getPerfume().getType()}" th:remove="tag"></span><br/>
-                            <span th:text="${orderItem.getPerfume().getVolume()}" th:remove="tag"></span> ml.</span>
+                            <span th:text="${orderItem.getProduct().getVolume()}" th:remove="tag"></span> ml.</span>
                             </p>
                         </td>
                         <td style="width: 54px;" class="content">
-                            <span th:text="${orderItem.getQuantity()}" th:remove="tag"></span> pcs.
-                        </td>
-                        <td style="width: 54px;" class="content">
-                            <span th:text="${orderItem.getPerfume().getPrice()}" th:remove="tag"></span> $
+                            <span th:text="${orderItem.getProduct().getPrice()}" th:remove="tag"></span> $
                         </td>
                     </tr>
                 </table>

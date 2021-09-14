@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import {Link, useLocation} from "react-router-dom";
 
-import {Order} from "../../../types/types";
+import {Order, Order2} from "../../../types/types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInfoCircle, faShoppingBag} from "@fortawesome/free-solid-svg-icons";
 
 const ManageUserOrder: FC = () => {
-    const location = useLocation<Order>();
+    const location = useLocation<Order2>();
     const {
         id,
         email,
@@ -78,11 +78,9 @@ const ManageUserOrder: FC = () => {
                     return (
                         <tr key={orderItem.id}>
                             <th><Link
-                                to={`/product/${orderItem.perfume.id}`}>{orderItem.perfume.id}</Link></th>
-                            <th>{orderItem.perfume.perfumer}</th>
-                            <th>{orderItem.perfume.perfumeTitle}</th>
+                                to={`/product/${orderItem.product.id}`}>{orderItem.product.id}</Link></th>
                             <th>{orderItem.quantity}</th>
-                            <th>{orderItem.perfume.price}.0 $</th>
+                            <th>{orderItem.product.price}.0 $</th>
                             <th>{orderItem.amount}.0 $</th>
                         </tr>
                     );

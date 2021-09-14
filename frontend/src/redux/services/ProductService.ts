@@ -1,8 +1,8 @@
 import {ProductClass} from "../../types/ProductClass";
 import {FilterParamsType} from "../../types/types";
 class ProductService {
-    async getProductById(): Promise<ProductClass> {
-        const API_URL = `http://localhost:8080/api/v1/perfumes/idNew/2`;
+    async getProductById(id: number): Promise<ProductClass> {
+        const API_URL = `http://localhost:8080/api/v1/perfumes/idNew/`+id;
         const response = await fetch(API_URL);
         if(!response.ok) {
             debugger;

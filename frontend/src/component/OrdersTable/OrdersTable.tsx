@@ -25,7 +25,6 @@ const OrdersTable: FC<PropsType> = ({loading,orders}) => {
                         <th>Customer</th>
                         <th>Email</th>
                         <th>Sum, $</th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -37,11 +36,6 @@ const OrdersTable: FC<PropsType> = ({loading,orders}) => {
                                 <th>{order.firstName + " " + order.lastName}</th>
                                 <th>{order.email}</th>
                                 <th>{order.totalPrice}</th>
-                                <th>
-                                    <Link to={{pathname: `/account/user/orders/${order.id}`, state: order}}>
-                                        Show more
-                                    </Link>
-                                </th>
                             </tr>
                         );
                     })}
